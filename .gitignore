@@ -1,0 +1,10 @@
+/build/
+/build-*/
+/cmake-build-*/
+/environment_check
+/environment_check.exe
+*.o
+*.obj
+*.out
+*.log
+.DS_Store
