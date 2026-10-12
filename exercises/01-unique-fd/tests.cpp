@@ -77,7 +77,7 @@ int test_move_constructor() {
   bool is_move_ok = false;
 
   {
-    UniqueFd source(reaf_fd);
+    UniqueFd source(read_fd);
     UniqueFd destination(std::move(source));
     
     bool is_open_fd = is_fd_open(read_fd);
