@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.20)
 project(st_cpp_prep LANGUAGES CXX)
 
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
@@ -17,6 +18,15 @@ endif()
 include(CTest)
 if(BUILD_TESTING)
     add_test(NAME environment_check COMMAND environment_check)
+
+    add_executable(ring_buffer_tests exercises/03-ring-buffer/test.cpp)
+    set_target_properties(ring_buffer_tests PROPERTIES CXX_EXTENSIONS OFF)
+    if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+        target_compile_options(ring_buffer_tests PRIVATE -Wall -Wextra -Wpedantic)
+    elseif(MSVC)
+        target_compile_options(ring_buffer_tests PRIVATE /W4 /Zc:__cplusplus)
+    endif()
+    add_test(NAME ring_buffer_tests COMMAND ring_buffer_tests)
 
     if(UNIX)
         add_executable(unique_fd_tests exercises/01-unique-fd/tests.cpp)
