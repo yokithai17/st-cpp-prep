@@ -1,6 +1,9 @@
 cmake_minimum_required(VERSION 3.20)
 project(st_cpp_prep LANGUAGES CXX)
 
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
 add_executable(environment_check tools/environment_check.cpp)
 target_compile_features(environment_check PRIVATE cxx_std_20)
 set_target_properties(environment_check PROPERTIES CXX_EXTENSIONS OFF)
